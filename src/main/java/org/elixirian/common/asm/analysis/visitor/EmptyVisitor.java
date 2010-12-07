@@ -18,23 +18,25 @@ public class EmptyVisitor implements ClassVisitor, FieldVisitor, MethodVisitor, 
 {
 
 	@Override
-	public void visit(String name, Object value)
+	public void visit(@SuppressWarnings("unused") final String name, @SuppressWarnings("unused") final Object value)
 	{
 	}
 
 	@Override
-	public void visitEnum(String name, String desc, String value)
+	public void visitEnum(@SuppressWarnings("unused") final String name, @SuppressWarnings("unused") final String desc,
+			@SuppressWarnings("unused") final String value)
 	{
 	}
 
 	@Override
-	public AnnotationVisitor visitAnnotation(String name, String desc)
+	public AnnotationVisitor visitAnnotation(@SuppressWarnings("unused") final String name,
+			@SuppressWarnings("unused") final String desc)
 	{
 		return this;
 	}
 
 	@Override
-	public AnnotationVisitor visitArray(String name)
+	public AnnotationVisitor visitArray(@SuppressWarnings("unused") final String name)
 	{
 		return this;
 	}
@@ -46,7 +48,8 @@ public class EmptyVisitor implements ClassVisitor, FieldVisitor, MethodVisitor, 
 	}
 
 	@Override
-	public AnnotationVisitor visitParameterAnnotation(int parameter, String desc, boolean visible)
+	public AnnotationVisitor visitParameterAnnotation(@SuppressWarnings("unused") final int parameter,
+			@SuppressWarnings("unused") final String desc, @SuppressWarnings("unused") final boolean visible)
 	{
 		return this;
 	}
@@ -57,134 +60,164 @@ public class EmptyVisitor implements ClassVisitor, FieldVisitor, MethodVisitor, 
 	}
 
 	@Override
-	public void visitFrame(int type, int nLocal, Object[] local, int nStack, Object[] stack)
+	public void visitFrame(@SuppressWarnings("unused") final int type, @SuppressWarnings("unused") final int nLocal,
+			@SuppressWarnings("unused") final Object[] local, @SuppressWarnings("unused") final int nStack,
+			@SuppressWarnings("unused") final Object[] stack)
 	{
 	}
 
 	@Override
-	public void visitInsn(int opcode)
+	public void visitInsn(@SuppressWarnings("unused") final int opcode)
 	{
 	}
 
 	@Override
-	public void visitIntInsn(int opcode, int operand)
+	public void visitIntInsn(@SuppressWarnings("unused") final int opcode, @SuppressWarnings("unused") final int operand)
 	{
 	}
 
 	@Override
-	public void visitVarInsn(int opcode, int var)
+	public void visitVarInsn(@SuppressWarnings("unused") final int opcode, @SuppressWarnings("unused") final int var)
 	{
 	}
 
 	@Override
-	public void visitTypeInsn(int opcode, String type)
+	public void visitTypeInsn(@SuppressWarnings("unused") final int opcode,
+			@SuppressWarnings("unused") final String type)
 	{
 	}
 
 	@Override
-	public void visitFieldInsn(int opcode, String owner, String name, String desc)
+	public void visitFieldInsn(@SuppressWarnings("unused") final int opcode,
+			@SuppressWarnings("unused") final String owner, @SuppressWarnings("unused") final String name,
+			@SuppressWarnings("unused") final String desc)
 	{
 	}
 
 	@Override
-	public void visitMethodInsn(int opcode, String owner, String name, String desc)
+	public void visitMethodInsn(@SuppressWarnings("unused") final int opcode,
+			@SuppressWarnings("unused") final String owner, @SuppressWarnings("unused") final String name,
+			@SuppressWarnings("unused") final String desc)
 	{
 	}
 
 	@Override
-	public void visitJumpInsn(int opcode, Label label)
+	public void visitJumpInsn(@SuppressWarnings("unused") final int opcode,
+			@SuppressWarnings("unused") final Label label)
 	{
 	}
 
 	@Override
-	public void visitLabel(Label label)
+	public void visitLabel(@SuppressWarnings("unused") final Label label)
 	{
 	}
 
 	@Override
-	public void visitLdcInsn(Object cst)
+	public void visitLdcInsn(@SuppressWarnings("unused") final Object cst)
 	{
 	}
 
 	@Override
-	public void visitIincInsn(int var, int increment)
+	public void visitIincInsn(@SuppressWarnings("unused") final int var, @SuppressWarnings("unused") final int increment)
 	{
 	}
 
 	@Override
-	public void visitTableSwitchInsn(int min, int max, Label dflt, Label[] labels)
+	public void visitTableSwitchInsn(@SuppressWarnings("unused") final int min,
+			@SuppressWarnings("unused") final int max, @SuppressWarnings("unused") final Label dflt,
+			@SuppressWarnings("unused") final Label[] labels)
 	{
 	}
 
 	@Override
-	public void visitLookupSwitchInsn(Label dflt, int[] keys, Label[] labels)
+	public void visitLookupSwitchInsn(@SuppressWarnings("unused") final Label dflt,
+			@SuppressWarnings("unused") final int[] keys, @SuppressWarnings("unused") final Label[] labels)
 	{
 	}
 
 	@Override
-	public void visitMultiANewArrayInsn(String desc, int dims)
+	public void visitMultiANewArrayInsn(@SuppressWarnings("unused") final String desc,
+			@SuppressWarnings("unused") final int dims)
 	{
 	}
 
 	@Override
-	public void visitTryCatchBlock(Label start, Label end, Label handler, String type)
+	public void visitTryCatchBlock(@SuppressWarnings("unused") final Label start,
+			@SuppressWarnings("unused") final Label end, @SuppressWarnings("unused") final Label handler,
+			@SuppressWarnings("unused") final String type)
 	{
 	}
 
 	@Override
-	public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index)
+	public void visitLocalVariable(@SuppressWarnings("unused") final String name,
+			@SuppressWarnings("unused") final String desc, @SuppressWarnings("unused") final String signature,
+			@SuppressWarnings("unused") final Label start, @SuppressWarnings("unused") final Label end,
+			@SuppressWarnings("unused") final int index)
 	{
 	}
 
 	@Override
-	public void visitLineNumber(int line, Label start)
+	public void visitLineNumber(@SuppressWarnings("unused") final int line,
+			@SuppressWarnings("unused") final Label start)
 	{
 	}
 
 	@Override
-	public void visitMaxs(int maxStack, int maxLocals)
+	public void visitMaxs(@SuppressWarnings("unused") final int maxStack,
+			@SuppressWarnings("unused") final int maxLocals)
 	{
 	}
 
 	@Override
-	public void visit(int version, int access, String name, String signature, String superName, String[] interfaces)
+	public void visit(@SuppressWarnings("unused") final int version, @SuppressWarnings("unused") final int access,
+			@SuppressWarnings("unused") final String name, @SuppressWarnings("unused") final String signature,
+			@SuppressWarnings("unused") final String superName, @SuppressWarnings("unused") final String[] interfaces)
 	{
 	}
 
 	@Override
-	public void visitSource(String source, String debug)
+	public void visitSource(@SuppressWarnings("unused") final String source,
+			@SuppressWarnings("unused") final String debug)
 	{
 	}
 
 	@Override
-	public void visitOuterClass(String owner, String name, String desc)
+	public void visitOuterClass(@SuppressWarnings("unused") final String owner,
+			@SuppressWarnings("unused") final String name, @SuppressWarnings("unused") final String desc)
 	{
 	}
 
 	@Override
-	public AnnotationVisitor visitAnnotation(String desc, boolean visible)
+	public AnnotationVisitor visitAnnotation(@SuppressWarnings("unused") final String desc,
+			@SuppressWarnings("unused") final boolean visible)
 	{
 		return this;
 	}
 
 	@Override
-	public void visitAttribute(Attribute attr)
+	public void visitAttribute(@SuppressWarnings("unused") final Attribute attr)
 	{
 	}
 
 	@Override
-	public void visitInnerClass(String name, String outerName, String innerName, int access)
+	public void visitInnerClass(@SuppressWarnings("unused") final String name,
+			@SuppressWarnings("unused") final String outerName, @SuppressWarnings("unused") final String innerName,
+			@SuppressWarnings("unused") final int access)
 	{
 	}
 
 	@Override
-	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value)
+	public FieldVisitor visitField(@SuppressWarnings("unused") final int access,
+			@SuppressWarnings("unused") final String name, @SuppressWarnings("unused") final String desc,
+			@SuppressWarnings("unused") final String signature, @SuppressWarnings("unused") final Object value)
 	{
 		return this;
 	}
 
 	@Override
-	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions)
+	public MethodVisitor visitMethod(@SuppressWarnings("unused") final int access,
+			@SuppressWarnings("unused") final String name, @SuppressWarnings("unused") final String desc,
+			@SuppressWarnings("unused") final String signature, @SuppressWarnings("unused") final String[] exceptions)
 	{
 		return this;
 	}

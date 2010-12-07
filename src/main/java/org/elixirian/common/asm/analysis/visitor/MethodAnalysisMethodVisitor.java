@@ -31,8 +31,9 @@ public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisit
 	 * @param methodName
 	 * @param desc
 	 */
-	public MethodAnalysisMethodVisitor(MemberCollector<M> memberCollector, Class<T> theClass,
-			Map<M, String[]> memberToParameterNamesMap, int access, String methodName, String desc)
+	public MethodAnalysisMethodVisitor(final MemberCollector<M> memberCollector, final Class<T> theClass,
+			final Map<M, String[]> memberToParameterNamesMap, final int access, final String methodName,
+			final String desc)
 	{
 		this.memberCollector = memberCollector;
 		this.theClass = theClass;

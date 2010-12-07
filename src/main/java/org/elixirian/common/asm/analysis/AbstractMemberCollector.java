@@ -29,13 +29,13 @@ public abstract class AbstractMemberCollector<M extends Member> implements Membe
 	{
 		private final ConcurrentMap<String, Class<?>> externalTypeCacheMap;
 
-		public ClassByTypeFinderWithCache(ConcurrentMap<String, Class<?>> otherKnownTypesMap)
+		public ClassByTypeFinderWithCache(final ConcurrentMap<String, Class<?>> otherKnownTypesMap)
 		{
 			this.externalTypeCacheMap = otherKnownTypesMap;
 		}
 
 		@Override
-		public Class<?> getClassByTypeWithAsmClasses(Type memberType, Class<?> theClass)
+		public Class<?> getClassByTypeWithAsmClasses(final Type memberType, final Class<?> theClass)
 		{
 			return getClassByType(memberType, theClass, externalTypeCacheMap);
 		}
@@ -50,7 +50,7 @@ public abstract class AbstractMemberCollector<M extends Member> implements Membe
 	private static final class ClassByTypeFinderWithoutCache implements AsmClassesUserToGetClassByType
 	{
 		@Override
-		public Class<?> getClassByTypeWithAsmClasses(Type memberType, Class<?> theClass)
+		public Class<?> getClassByTypeWithAsmClasses(final Type memberType, final Class<?> theClass)
 		{
 			return getClassByType(memberType, theClass);
 		}
@@ -69,7 +69,7 @@ public abstract class AbstractMemberCollector<M extends Member> implements Membe
 		asmClassesUserToGetClassByType = new ClassByTypeFinderWithoutCache();
 	}
 
-	public AbstractMemberCollector(ConcurrentMap<String, Class<?>> externalTypeCacheMap)
+	public AbstractMemberCollector(final ConcurrentMap<String, Class<?>> externalTypeCacheMap)
 	{
 		asmClassesUserToGetClassByType = new ClassByTypeFinderWithCache(externalTypeCacheMap);
 	}
@@ -80,8 +80,8 @@ public abstract class AbstractMemberCollector<M extends Member> implements Membe
 	}
 
 	@Override
-	public void collect(Class<?> theClass, String memberName, Map<M, String[]> memberToParameterNamesMap,
-			Type[] params, String[] paramNames)
+	public void collect(final Class<?> theClass, final String memberName,
+			final Map<M, String[]> memberToParameterNamesMap, final Type[] params, final String[] paramNames)
 	{
 		Class<?>[] parameterTypes = new Class<?>[params.length];
 		for (int i = 0, size = params.length; i < size; i++)

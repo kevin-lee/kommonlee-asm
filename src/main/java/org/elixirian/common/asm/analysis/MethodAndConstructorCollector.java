@@ -18,20 +18,20 @@ public class MethodAndConstructorCollector extends AbstractMemberCollector<Membe
 	{
 	}
 
-	public MethodAndConstructorCollector(ConcurrentMap<String, Class<?>> otherKnownTypesMap)
+	public MethodAndConstructorCollector(final ConcurrentMap<String, Class<?>> otherKnownTypesMap)
 	{
 		super(otherKnownTypesMap);
 	}
 
 	@Override
-	protected boolean isCollectable(@SuppressWarnings("unused") String memberName)
+	protected boolean isCollectable(@SuppressWarnings("unused") final String memberName)
 	{
 		return true;
 	}
 
 	@Override
-	protected <T> Member resolveMemberClass(Class<T> theClass, String memberName, Class<?>[] parameterTypes)
-			throws NoSuchMethodException
+	protected <T> Member resolveMemberClass(final Class<T> theClass, final String memberName,
+			final Class<?>[] parameterTypes) throws NoSuchMethodException
 	{
 		return AsmClasses.CONSTRUCTOR_NAME.equals(memberName) ? theClass.getDeclaredConstructor(parameterTypes)
 				: theClass.getDeclaredMethod(memberName, parameterTypes);

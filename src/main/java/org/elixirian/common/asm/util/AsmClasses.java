@@ -199,7 +199,7 @@ public final class AsmClasses
 				.getContextClassLoader();
 	}
 
-	public static InputStream getResourceAsStream(Class<?> theClass)
+	public static InputStream getResourceAsStream(final Class<?> theClass)
 	{
 		return theClass.getResourceAsStream("/" + theClass.getName()
 				.replace('.', '/') + ".class");
@@ -212,12 +212,12 @@ public final class AsmClasses
 	 * @param type
 	 * @return
 	 */
-	public static int calculateLocalVariableSlotSize(Type type)
+	public static int calculateLocalVariableSlotSize(final Type type)
 	{
 		return (Type.LONG_TYPE == type || Type.DOUBLE_TYPE == type ? 2 : 1);
 	}
 
-	public static int[] calculateLocalVariableSlotIndices(boolean isStaticMethod, Type[] params)
+	public static int[] calculateLocalVariableSlotIndices(final boolean isStaticMethod, final Type[] params)
 	{
 		int[] localVariableSlotIndices = new int[params.length];
 		int next = isStaticMethod ? 0 : 1;

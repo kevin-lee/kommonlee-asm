@@ -18,18 +18,18 @@ public class MethodCollector extends AbstractMemberCollector<Method>
 	{
 	}
 
-	public MethodCollector(ConcurrentMap<String, Class<?>> otherKnownTypesMap)
+	public MethodCollector(final ConcurrentMap<String, Class<?>> otherKnownTypesMap)
 	{
 		super(otherKnownTypesMap);
 	}
 
 	@Override
-	protected boolean isCollectable(String memberName)
+	protected boolean isCollectable(final String memberName)
 	{
 		return isCollectable0(memberName);
 	}
 
-	private boolean isCollectable0(String memberName)
+	private boolean isCollectable0(final String memberName)
 	{
 		return !AsmClasses.CONSTRUCTOR_NAME.equals(memberName);
 	}
@@ -44,8 +44,8 @@ public class MethodCollector extends AbstractMemberCollector<Method>
 	 *             If no method with the given memberName and the given parameter types is found.
 	 */
 	@Override
-	protected <T> Method resolveMemberClass(Class<T> theClass, String memberName, Class<?>[] parameterTypes)
-			throws NoSuchMethodException
+	protected <T> Method resolveMemberClass(final Class<T> theClass, final String memberName,
+			final Class<?>[] parameterTypes) throws NoSuchMethodException
 	{
 		return isCollectable0(memberName) ? theClass.getDeclaredMethod(memberName, parameterTypes) : null;
 	}

@@ -35,7 +35,7 @@ public class AsmMethodAndConstructorAnalyser implements MethodAndConstructorAnal
 		this.constructorCollector = new ConstructorCollector();
 	}
 
-	public AsmMethodAndConstructorAnalyser(ConcurrentMap<String, Class<?>> otherKnownTypesMap)
+	public AsmMethodAndConstructorAnalyser(final ConcurrentMap<String, Class<?>> otherKnownTypesMap)
 	{
 		this.methodAndConstructorCollector = new MethodAndConstructorCollector(otherKnownTypesMap);
 		this.methodCollector = new MethodCollector(otherKnownTypesMap);
@@ -57,7 +57,7 @@ public class AsmMethodAndConstructorAnalyser implements MethodAndConstructorAnal
 		return constructorCollector;
 	}
 
-	private ClassReader getClassReader(Class<?> theClass) throws IllegalArgumentException
+	private ClassReader getClassReader(final Class<?> theClass) throws IllegalArgumentException
 	{
 		try
 		{
@@ -70,7 +70,7 @@ public class AsmMethodAndConstructorAnalyser implements MethodAndConstructorAnal
 	}
 
 	@Override
-	public <T> Map<Member, String[]> findMethodsAndConstructorsWithParameterNames(Class<T> theClass)
+	public <T> Map<Member, String[]> findMethodsAndConstructorsWithParameterNames(final Class<T> theClass)
 			throws IllegalArgumentException
 	{
 		final Map<Member, String[]> memberToParameterNamesMap = new HashMap<Member, String[]>();
@@ -81,7 +81,7 @@ public class AsmMethodAndConstructorAnalyser implements MethodAndConstructorAnal
 	}
 
 	@Override
-	public <T> Map<Method, String[]> findMethodsWithParameterNames(Class<T> theClass) throws IllegalArgumentException
+	public <T> Map<Method, String[]> findMethodsWithParameterNames(final Class<T> theClass) throws IllegalArgumentException
 	{
 		final Map<Method, String[]> methodToParameterNamesMap = new HashMap<Method, String[]>();
 		getClassReader(theClass).accept(
@@ -90,7 +90,7 @@ public class AsmMethodAndConstructorAnalyser implements MethodAndConstructorAnal
 	}
 
 	@Override
-	public <T> Map<Constructor<T>, String[]> findConstructorsWithParameterNames(Class<T> theClass)
+	public <T> Map<Constructor<T>, String[]> findConstructorsWithParameterNames(final Class<T> theClass)
 			throws IllegalArgumentException
 	{
 		final Map<Constructor<T>, String[]> constructorToParameterNamesMap = new HashMap<Constructor<T>, String[]>();
@@ -105,7 +105,7 @@ public class AsmMethodAndConstructorAnalyser implements MethodAndConstructorAnal
 	}
 
 	public static AsmMethodAndConstructorAnalyser newAsmMethodAndConstructorAnalyser(
-			ConcurrentMap<String, Class<?>> externalTypeCacheMap)
+			final ConcurrentMap<String, Class<?>> externalTypeCacheMap)
 	{
 		return new AsmMethodAndConstructorAnalyser(externalTypeCacheMap);
 	}

@@ -18,18 +18,18 @@ public class ConstructorCollector extends AbstractMemberCollector<Constructor<? 
 	{
 	}
 
-	public ConstructorCollector(ConcurrentMap<String, Class<?>> knownTypeMap)
+	public ConstructorCollector(final ConcurrentMap<String, Class<?>> knownTypeMap)
 	{
 		super(knownTypeMap);
 	}
 
 	@Override
-	protected boolean isCollectable(String memberName)
+	protected boolean isCollectable(final String memberName)
 	{
 		return isCollectable0(memberName);
 	}
 
-	private boolean isCollectable0(String memberName)
+	private boolean isCollectable0(final String memberName)
 	{
 		return AsmClasses.CONSTRUCTOR_NAME.equals(memberName);
 	}
@@ -44,8 +44,8 @@ public class ConstructorCollector extends AbstractMemberCollector<Constructor<? 
 	 *             if the given memberName is {@code <init>} but no parameter with the given parameterTypes is found.
 	 */
 	@Override
-	protected <T> Constructor<T> resolveMemberClass(Class<T> theClass, String memberName, Class<?>[] parameterTypes)
-			throws NoSuchMethodException
+	protected <T> Constructor<T> resolveMemberClass(final Class<T> theClass, final String memberName,
+			final Class<?>[] parameterTypes) throws NoSuchMethodException
 	{
 		return isCollectable0(memberName) ? theClass.getDeclaredConstructor(parameterTypes) : null;
 	}

@@ -21,22 +21,17 @@ public class MethodAnalysisClassVisitor<T, M extends Member> extends EmptyVisito
 	 * @param theClass
 	 * @param memberToParameterNamesMap
 	 */
-	public MethodAnalysisClassVisitor(MemberCollector<M> memberCollector, Class<T> theClass,
-			Map<M, String[]> memberToParameterNamesMap)
+	public MethodAnalysisClassVisitor(final MemberCollector<M> memberCollector, final Class<T> theClass,
+			final Map<M, String[]> memberToParameterNamesMap)
 	{
 		this.memberCollector = memberCollector;
 		this.theClass = theClass;
 		this.memberToParameterNamesMap = memberToParameterNamesMap;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.objectweb.asm.ClassVisitor#visitMethod(int, java.lang.String, java.lang.String, java.lang.String,
-	 * java.lang.String[])
-	 */
 	@Override
-	public MethodVisitor visitMethod(int access, String name, String desc,
-			@SuppressWarnings("unused") String signature, @SuppressWarnings("unused") String[] exceptions)
+	public MethodVisitor visitMethod(final int access, final String name, final String desc,
+			@SuppressWarnings("unused") final String signature, @SuppressWarnings("unused") final String[] exceptions)
 	{
 		if (0 == ((access & Opcodes.ACC_SYNTHETIC) | (access & Opcodes.ACC_BRIDGE)))
 		{
