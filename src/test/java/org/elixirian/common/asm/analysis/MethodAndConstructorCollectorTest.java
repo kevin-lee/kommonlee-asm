@@ -92,8 +92,7 @@ public class MethodAndConstructorCollectorTest
 		final MethodAndConstructorCollector methodAndConstructorCollector =
 			new MethodAndConstructorCollector(classNameToClassMapMock);
 		methodAndConstructorCollector.collect(TestPojo.class, "testMethod4", memberToParameterNamesMap,
-				Type.getArgumentTypes(TestPojo.class.getDeclaredMethod("testMethod4", PARAMS4)),
-				new String[] { "another" });
+				Type.getArgumentTypes(TestPojo.class.getDeclaredMethod("testMethod4", PARAMS4)), new String[] { "another" });
 		verify(classNameToClassMapMock).get(any());
 
 		reset(classNameToClassMapMock);
@@ -115,8 +114,7 @@ public class MethodAndConstructorCollectorTest
 	}
 
 	@Test
-	public final void testResolveMemberClassClassOfQStringClassOfQArray() throws SecurityException,
-			NoSuchMethodException
+	public final void testResolveMemberClassClassOfQStringClassOfQArray() throws SecurityException, NoSuchMethodException
 	{
 
 		assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "testMethod1", PARAMS1),
@@ -126,11 +124,9 @@ public class MethodAndConstructorCollectorTest
 		assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "testMethod3", PARAMS3),
 				equalTo(((Member) TestPojo.class.getDeclaredMethod("testMethod3", PARAMS3))));
 
-		assertThat(
-				methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS0),
+		assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS0),
 				equalTo((Member) TestPojo.class.getDeclaredConstructor(PARAMS0)));
-		assertThat(
-				methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS1),
+		assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS1),
 				equalTo((Member) TestPojo.class.getDeclaredConstructor(PARAMS1)));
 
 		boolean exceptionThrown = false;

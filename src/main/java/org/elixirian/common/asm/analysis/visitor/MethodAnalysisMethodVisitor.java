@@ -10,6 +10,28 @@ import org.objectweb.asm.Label;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
+/**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
+ * @author Lee, SeongHyun (Kevin)
+ * @version 0.0.1 (2010-06-15)
+ * @param <T>
+ * @param <M>
+ */
 public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisitor
 {
 	private final MemberCollector<M> memberCollector;
@@ -32,8 +54,7 @@ public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisit
 	 * @param desc
 	 */
 	public MethodAnalysisMethodVisitor(final MemberCollector<M> memberCollector, final Class<T> theClass,
-			final Map<M, String[]> memberToParameterNamesMap, final int access, final String methodName,
-			final String desc)
+			final Map<M, String[]> memberToParameterNamesMap, final int access, final String methodName, final String desc)
 	{
 		this.memberCollector = memberCollector;
 		this.theClass = theClass;
@@ -78,9 +99,9 @@ public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisit
 	private boolean shouldCollectMethodInfo()
 	{
 		/*
-		 * If the method is a static method with no parameters and has no local variables in it which means it has no
-		 * local variable shots, the visitLocalVariable() method might not be called so this case should be checked and
-		 * if it is the case then this method should return true.
+		 * If the method is a static method with no parameters and has no local variables in it which means it has no local
+		 * variable shots, the visitLocalVariable() method might not be called so this case should be checked and if it is
+		 * the case then this method should return true.
 		 */
 		// return hasLocalVaribleSlots || (staticMethod && 0 == paramNames.length);
 		return !"<clinit>".equals(methodName);

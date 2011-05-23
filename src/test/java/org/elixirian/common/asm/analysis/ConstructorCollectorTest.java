@@ -105,8 +105,7 @@ public class ConstructorCollectorTest
 	}
 
 	@Test
-	public final void testResolveMemberClassClassOfQStringClassOfQArray() throws SecurityException,
-			NoSuchMethodException
+	public final void testResolveMemberClassClassOfQStringClassOfQArray() throws SecurityException, NoSuchMethodException
 	{
 		assertThat(constructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS0),
 				equalTo(TestPojo.class.getConstructor(PARAMS0)));

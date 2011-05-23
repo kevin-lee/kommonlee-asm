@@ -72,8 +72,7 @@ public class AsmMethodAndConstructorAnalyserTest
 		assertThat(asmMethodAndConstructorAnalyser.getMethodCollector(), is(instanceOf(MethodCollector.class)));
 		assertThat(asmMethodAndConstructorAnalyser.getMethodCollector()
 				.getExternalTypeCacheMap(), is(nullValue()));
-		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector(),
-				is(instanceOf(ConstructorCollector.class)));
+		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector(), is(instanceOf(ConstructorCollector.class)));
 		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector()
 				.getExternalTypeCacheMap(), is(nullValue()));
 	}
@@ -93,8 +92,7 @@ public class AsmMethodAndConstructorAnalyserTest
 		assertThat(asmMethodAndConstructorAnalyser.getMethodCollector(), is(instanceOf(MethodCollector.class)));
 		assertThat(asmMethodAndConstructorAnalyser.getMethodCollector()
 				.getExternalTypeCacheMap(), is(otherKnownTypesMap));
-		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector(),
-				is(instanceOf(ConstructorCollector.class)));
+		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector(), is(instanceOf(ConstructorCollector.class)));
 		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector()
 				.getExternalTypeCacheMap(), is(otherKnownTypesMap));
 	}

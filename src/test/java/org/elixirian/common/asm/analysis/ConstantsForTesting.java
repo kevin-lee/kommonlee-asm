@@ -54,15 +54,14 @@ public final class ConstantsForTesting
 		{
 		}
 
-		public TestPojo(// @SuppressWarnings("unused")
-				@ParamAnnotation(value = "someName", number = 2) @AnotherParamAnnotation() String name)
+		public TestPojo(
+				@SuppressWarnings("unused") @ParamAnnotation(value = "someName", number = 2) @AnotherParamAnnotation() String name)
 		{
 		}
 
 		public TestPojo(
-				// @SuppressWarnings("unused")
-				@ParamAnnotation(value = "someName", number = 2) @AnotherParamAnnotation() String name,
-				@ParamAnnotation int number)
+				@SuppressWarnings("unused") @ParamAnnotation(value = "someName", number = 2) @AnotherParamAnnotation() String name,
+				@SuppressWarnings("unused") @ParamAnnotation int number)
 		{
 		}
 

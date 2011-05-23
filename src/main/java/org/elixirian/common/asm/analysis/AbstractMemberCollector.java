@@ -13,6 +13,22 @@ import java.util.concurrent.ConcurrentMap;
 import org.objectweb.asm.Type;
 
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-06-22)
  */
@@ -109,7 +125,8 @@ public abstract class AbstractMemberCollector<M extends Member> implements Membe
 			}
 			stringBuilder.append("]");
 			throw new IllegalStateException(
-					format("method [name: %s] is found in the class bytecode yet cannot be resolved in the class [%s]. \n[methodInfo: \n%s",
+					format(
+							"method [name: %s] is found in the class bytecode yet cannot be resolved in the class [%s]. \n[methodInfo: \n%s",
 							memberName, theClass, stringBuilder));
 		}
 	}
@@ -118,14 +135,13 @@ public abstract class AbstractMemberCollector<M extends Member> implements Membe
 
 	/**
 	 * @param <T>
-	 *            the type of the given {@link Class}
+	 *          the type of the given {@link Class}
 	 * @param theClass
-	 *            the given {@link Class}
+	 *          the given {@link Class}
 	 * @param memberName
-	 *            the name of member which should be either the construct name that is {@code <init>} or the method
-	 *            name.
+	 *          the name of member which should be either the construct name that is {@code <init>} or the method name.
 	 * @param parameterTypes
-	 *            the {@link Class} array containing the given parameter types of the given member.
+	 *          the {@link Class} array containing the given parameter types of the given member.
 	 * @return
 	 * @throws NoSuchMethodException
 	 */

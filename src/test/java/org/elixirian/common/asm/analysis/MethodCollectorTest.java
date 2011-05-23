@@ -89,8 +89,7 @@ public class MethodCollectorTest
 
 		final MethodCollector methodCollector = new MethodCollector(classNameToClassMapMock);
 		methodCollector.collect(TestPojo.class, "testMethod4", memberToParameterNamesMap,
-				Type.getArgumentTypes(TestPojo.class.getDeclaredMethod("testMethod4", PARAMS4)),
-				new String[] { "another" });
+				Type.getArgumentTypes(TestPojo.class.getDeclaredMethod("testMethod4", PARAMS4)), new String[] { "another" });
 		verify(classNameToClassMapMock).get(any());
 	}
 

@@ -14,11 +14,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
+import org.elixirian.common.asm.analysis.visitor.MethodAnalysisClassVisitor;
 import org.objectweb.asm.ClassReader;
 
-import org.elixirian.common.asm.analysis.visitor.MethodAnalysisClassVisitor;
-
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-06-22)
  */
@@ -75,13 +90,14 @@ public class AsmMethodAndConstructorAnalyser implements MethodAndConstructorAnal
 	{
 		final Map<Member, String[]> memberToParameterNamesMap = new HashMap<Member, String[]>();
 		getClassReader(theClass).accept(
-				new MethodAnalysisClassVisitor<T, Member>(methodAndConstructorCollector, theClass,
-						memberToParameterNamesMap), 0);
+				new MethodAnalysisClassVisitor<T, Member>(methodAndConstructorCollector, theClass, memberToParameterNamesMap),
+				0);
 		return memberToParameterNamesMap;
 	}
 
 	@Override
-	public <T> Map<Method, String[]> findMethodsWithParameterNames(final Class<T> theClass) throws IllegalArgumentException
+	public <T> Map<Method, String[]> findMethodsWithParameterNames(final Class<T> theClass)
+			throws IllegalArgumentException
 	{
 		final Map<Method, String[]> methodToParameterNamesMap = new HashMap<Method, String[]>();
 		getClassReader(theClass).accept(
@@ -96,8 +112,7 @@ public class AsmMethodAndConstructorAnalyser implements MethodAndConstructorAnal
 		final Map<Constructor<T>, String[]> constructorToParameterNamesMap = new HashMap<Constructor<T>, String[]>();
 
 		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-		final Map<Constructor<?>, String[]> map =
-			(Map<Constructor<?>, String[]>) ((Map) constructorToParameterNamesMap);
+		final Map<Constructor<?>, String[]> map = (Map<Constructor<?>, String[]>) ((Map) constructorToParameterNamesMap);
 
 		getClassReader(theClass).accept(
 				new MethodAnalysisClassVisitor<T, Constructor<?>>(constructorCollector, theClass, map), 0);
