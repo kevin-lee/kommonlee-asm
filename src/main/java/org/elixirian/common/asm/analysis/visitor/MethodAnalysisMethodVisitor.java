@@ -100,7 +100,7 @@ public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisit
 	{
 		/*
 		 * If the method is a static method with no parameters and has no local variables in it which means it has no local
-		 * variable shots, the visitLocalVariable() method might not be called so this case should be checked and if it is
+		 * variable slots, the visitLocalVariable() method might not be called so this case should be checked and if it is
 		 * the case then this method should return true.
 		 */
 		// return hasLocalVaribleSlots || (staticMethod && 0 == paramNames.length);
