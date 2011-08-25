@@ -1,10 +1,12 @@
 /**
  * 
  */
-package org.elixirian.common.asm.analysis;
+package org.elixirian.kommonlee.asm.analysis;
 
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Member;
 import java.util.Map;
+
+import org.objectweb.asm.Type;
 
 /**
  * <pre>
@@ -26,7 +28,8 @@ import java.util.Map;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-06-22)
  */
-public interface ConstructorAnalyser
+public interface MemberCollector<M extends Member>
 {
-	<T> Map<Constructor<T>, String[]> findConstructorsWithParameterNames(Class<T> theClass);
+  void collect(Class<?> theClass, String memberName, Map<M, String[]> memberToParameterNamesMap, Type[] params,
+      String[] paramNames);
 }
