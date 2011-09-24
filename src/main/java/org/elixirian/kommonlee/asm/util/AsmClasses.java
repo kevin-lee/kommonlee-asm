@@ -18,11 +18,11 @@ import org.objectweb.asm.Type;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -165,7 +165,7 @@ public final class AsmClasses
       }
       return classLoaderToUse.loadClass(className);
     }
-    catch (ClassNotFoundException e)
+    catch (final ClassNotFoundException e)
     {
       e.printStackTrace();
       throw new UnsupportedOperationException(e);
@@ -201,7 +201,7 @@ public final class AsmClasses
       final Class<?> theTypeFromCache = externalTypeCacheMap.putIfAbsent(className, theType);
       return (null == theTypeFromCache ? theType : theTypeFromCache);
     }
-    catch (ClassNotFoundException e)
+    catch (final ClassNotFoundException e)
     {
       e.printStackTrace();
       throw new UnsupportedOperationException(e);
@@ -235,7 +235,7 @@ public final class AsmClasses
 
   public static int[] calculateLocalVariableSlotIndices(final boolean isStaticMethod, final Type[] params)
   {
-    int[] localVariableSlotIndices = new int[params.length];
+    final int[] localVariableSlotIndices = new int[params.length];
     int next = isStaticMethod ? 0 : 1;
     for (int i = 0, size = params.length; i < size; i++)
     {
