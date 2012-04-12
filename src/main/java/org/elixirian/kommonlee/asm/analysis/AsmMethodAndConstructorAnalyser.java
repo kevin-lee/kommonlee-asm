@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
 import org.elixirian.kommonlee.asm.analysis.visitor.MethodAnalysisClassVisitor;
-import org.objectweb.asm.ClassReader;
+import org.elixirian.kommonlee.lib3rd.asm3.ClassReader;
 
 /**
  * <pre>

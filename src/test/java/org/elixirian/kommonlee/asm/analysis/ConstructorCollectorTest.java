@@ -22,7 +22,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.objectweb.asm.Type;
+import org.elixirian.kommonlee.lib3rd.asm3.Type;
 
 /**
  * @author Lee, SeongHyun (Kevin)

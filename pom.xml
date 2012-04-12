@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>kommonlee-asm</artifactId>
-  <version>0.0.8-SNAPSHOT</version>
+  <version>0.0.9-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>kommonlee-asm</name>
   <url>http://elixirian.org</url>
@@ -69,11 +69,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>asm</groupId>
-      <artifactId>asm</artifactId>
-      <version>3.3</version>
-      <type>jar</type>
-      <scope>compile</scope>
+      <groupId>org.elixirian</groupId>
+      <artifactId>kommonlee-3rd-asm</artifactId>
+      <version>3.3.1</version>
     </dependency>
     <dependency>
       <groupId>org.elixirian</groupId>

@@ -6,9 +6,9 @@ import java.lang.reflect.Member;
 import java.util.Map;
 
 import org.elixirian.kommonlee.asm.analysis.MemberCollector;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
+import org.elixirian.kommonlee.lib3rd.asm3.Label;
+import org.elixirian.kommonlee.lib3rd.asm3.Opcodes;
+import org.elixirian.kommonlee.lib3rd.asm3.Type;
 
 /**
  * <pre>

@@ -6,7 +6,7 @@ package org.elixirian.kommonlee.asm.analysis;
 import java.lang.reflect.Member;
 import java.util.Map;
 
-import org.objectweb.asm.Type;
+import org.elixirian.kommonlee.lib3rd.asm3.Type;
 
 /**
  * <pre>

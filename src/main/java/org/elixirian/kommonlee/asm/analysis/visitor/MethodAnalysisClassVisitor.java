@@ -4,8 +4,8 @@ import java.lang.reflect.Member;
 import java.util.Map;
 
 import org.elixirian.kommonlee.asm.analysis.MemberCollector;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
+import org.elixirian.kommonlee.lib3rd.asm3.MethodVisitor;
+import org.elixirian.kommonlee.lib3rd.asm3.Opcodes;
 
 /**
  * <pre>

@@ -3,12 +3,12 @@
  */
 package org.elixirian.kommonlee.asm.analysis.visitor;
 
-import org.objectweb.asm.AnnotationVisitor;
-import org.objectweb.asm.Attribute;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.FieldVisitor;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
+import org.elixirian.kommonlee.lib3rd.asm3.AnnotationVisitor;
+import org.elixirian.kommonlee.lib3rd.asm3.Attribute;
+import org.elixirian.kommonlee.lib3rd.asm3.ClassVisitor;
+import org.elixirian.kommonlee.lib3rd.asm3.FieldVisitor;
+import org.elixirian.kommonlee.lib3rd.asm3.Label;
+import org.elixirian.kommonlee.lib3rd.asm3.MethodVisitor;
 
 /**
  * <pre>

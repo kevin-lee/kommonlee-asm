@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
-import org.objectweb.asm.Type;
+import org.elixirian.kommonlee.lib3rd.asm3.Type;
 
 /**
  * <pre>
