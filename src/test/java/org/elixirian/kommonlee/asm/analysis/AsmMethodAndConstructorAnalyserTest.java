@@ -54,127 +54,131 @@ import org.junit.Test;
  */
 public class AsmMethodAndConstructorAnalyserTest
 {
-  private AsmMethodAndConstructorAnalyser asmMethodAndConstructorAnalyser;
+	private AsmMethodAndConstructorAnalyser asmMethodAndConstructorAnalyser;
 
-  /**
-   * @throws java.lang.Exception
-   */
-  @BeforeClass
-  public static void setUpBeforeClass() throws Exception
-  {
-  }
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception
+	{
+	}
 
-  /**
-   * @throws java.lang.Exception
-   */
-  @AfterClass
-  public static void tearDownAfterClass() throws Exception
-  {
-  }
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception
+	{
+	}
 
-  /**
-   * @throws java.lang.Exception
-   */
-  @Before
-  public void setUp() throws Exception
-  {
-    asmMethodAndConstructorAnalyser = new AsmMethodAndConstructorAnalyser();
-  }
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception
+	{
+		asmMethodAndConstructorAnalyser = new AsmMethodAndConstructorAnalyser();
+	}
 
-  /**
-   * @throws java.lang.Exception
-   */
-  @After
-  public void tearDown() throws Exception
-  {
-  }
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@After
+	public void tearDown() throws Exception
+	{
+	}
 
-  @Test
-  public final void testAsmMethodAndConstructorAnalyser()
-  {
-    final AsmMethodAndConstructorAnalyser asmMethodAndConstructorAnalyser = new AsmMethodAndConstructorAnalyser();
-    assertThat(asmMethodAndConstructorAnalyser.getMethodAndConstructorCollector(),
-        is(instanceOf(MethodAndConstructorCollector.class)));
-    assertThat(asmMethodAndConstructorAnalyser.getMethodAndConstructorCollector()
-        .getExternalTypeCacheMap(), is(nullValue()));
-    assertThat(asmMethodAndConstructorAnalyser.getMethodCollector(), is(instanceOf(MethodCollector.class)));
-    assertThat(asmMethodAndConstructorAnalyser.getMethodCollector()
-        .getExternalTypeCacheMap(), is(nullValue()));
-    assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector(), is(instanceOf(ConstructorCollector.class)));
-    assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector()
-        .getExternalTypeCacheMap(), is(nullValue()));
-  }
+	@Test
+	public final void testAsmMethodAndConstructorAnalyser()
+	{
+		final AsmMethodAndConstructorAnalyser asmMethodAndConstructorAnalyser = new AsmMethodAndConstructorAnalyser();
+		assertThat(asmMethodAndConstructorAnalyser.getMethodAndConstructorCollector(),
+				is(instanceOf(MethodAndConstructorCollector.class)));
+		assertThat(asmMethodAndConstructorAnalyser.getMethodAndConstructorCollector()
+				.getExternalTypeCacheMap(), is(nullValue()));
+		assertThat(asmMethodAndConstructorAnalyser.getMethodCollector(), is(instanceOf(MethodCollector.class)));
+		assertThat(asmMethodAndConstructorAnalyser.getMethodCollector()
+				.getExternalTypeCacheMap(), is(nullValue()));
+		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector(), is(instanceOf(ConstructorCollector.class)));
+		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector()
+				.getExternalTypeCacheMap(), is(nullValue()));
+	}
 
-  @Test
-  public final void testAsmMethodAndConstructorAnalyserMapOfStringClassOfQ()
-  {
-    @SuppressWarnings("unchecked")
-    final ConcurrentMap<String, Class<?>> otherKnownTypesMap = mock(ConcurrentMap.class);
+	@Test
+	public final void testAsmMethodAndConstructorAnalyserMapOfStringClassOfQ()
+	{
+		@SuppressWarnings("unchecked")
+		/* given */
+		final ConcurrentMap<String, Class<?>> otherKnownTypesMap = mock(ConcurrentMap.class);
 
-    final AsmMethodAndConstructorAnalyser asmMethodAndConstructorAnalyser =
-      new AsmMethodAndConstructorAnalyser(otherKnownTypesMap);
-    assertThat(asmMethodAndConstructorAnalyser.getMethodAndConstructorCollector(),
-        is(instanceOf(MethodAndConstructorCollector.class)));
-    assertThat(asmMethodAndConstructorAnalyser.getMethodAndConstructorCollector()
-        .getExternalTypeCacheMap(), is(otherKnownTypesMap));
-    assertThat(asmMethodAndConstructorAnalyser.getMethodCollector(), is(instanceOf(MethodCollector.class)));
-    assertThat(asmMethodAndConstructorAnalyser.getMethodCollector()
-        .getExternalTypeCacheMap(), is(otherKnownTypesMap));
-    assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector(), is(instanceOf(ConstructorCollector.class)));
-    assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector()
-        .getExternalTypeCacheMap(), is(otherKnownTypesMap));
-  }
+		/* when */
+		final AsmMethodAndConstructorAnalyser asmMethodAndConstructorAnalyser =
+			new AsmMethodAndConstructorAnalyser(otherKnownTypesMap);
 
-  @Test
-  public final void testFindMethodsAndConstructorsWithParameterNames()
-  {
-    final Constructor<?>[] constructors = TestPojo.class.getDeclaredConstructors();
-    final Method[] methods = TestPojo.class.getDeclaredMethods();
+		/* then */
+		assertThat(asmMethodAndConstructorAnalyser.getMethodAndConstructorCollector(),
+				is(instanceOf(MethodAndConstructorCollector.class)));
+		assertThat(asmMethodAndConstructorAnalyser.getMethodAndConstructorCollector()
+				.getExternalTypeCacheMap(), is(otherKnownTypesMap));
+		assertThat(asmMethodAndConstructorAnalyser.getMethodCollector(), is(instanceOf(MethodCollector.class)));
+		assertThat(asmMethodAndConstructorAnalyser.getMethodCollector()
+				.getExternalTypeCacheMap(), is(otherKnownTypesMap));
+		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector(), is(instanceOf(ConstructorCollector.class)));
+		assertThat(asmMethodAndConstructorAnalyser.getConstructorCollector()
+				.getExternalTypeCacheMap(), is(otherKnownTypesMap));
+	}
 
-    final Map<Member, String[]> methodsAndConstructorsMap =
-      asmMethodAndConstructorAnalyser.findMethodsAndConstructorsWithParameterNames(TestPojo.class);
+	@Test
+	public final void testFindMethodsAndConstructorsWithParameterNames()
+	{
+		final Constructor<?>[] constructors = TestPojo.class.getDeclaredConstructors();
+		final Method[] methods = TestPojo.class.getDeclaredMethods();
 
-    assertEquals(constructors.length + methods.length, methodsAndConstructorsMap.size());
+		final Map<Member, String[]> methodsAndConstructorsMap =
+			asmMethodAndConstructorAnalyser.findMethodsAndConstructorsWithParameterNames(TestPojo.class);
 
-    for (Constructor<?> constructor : constructors)
-    {
-      assertTrue(methodsAndConstructorsMap.containsKey(constructor));
-    }
+		assertEquals(constructors.length + methods.length, methodsAndConstructorsMap.size());
 
-    for (Method method : methods)
-    {
-      assertTrue(methodsAndConstructorsMap.containsKey(method));
-    }
-  }
+		for (final Constructor<?> constructor : constructors)
+		{
+			assertTrue(methodsAndConstructorsMap.containsKey(constructor));
+		}
 
-  @Test
-  public final void testFindMethodsWithParameterNames()
-  {
-    final Method[] methods = TestPojo.class.getDeclaredMethods();
-    final Map<Method, String[]> methodsAndConstructorsMap =
-      asmMethodAndConstructorAnalyser.findMethodsWithParameterNames(TestPojo.class);
+		for (final Method method : methods)
+		{
+			assertTrue(methodsAndConstructorsMap.containsKey(method));
+		}
+	}
 
-    assertEquals(methods.length, methodsAndConstructorsMap.size());
+	@Test
+	public final void testFindMethodsWithParameterNames()
+	{
+		final Method[] methods = TestPojo.class.getDeclaredMethods();
+		final Map<Method, String[]> methodsAndConstructorsMap =
+			asmMethodAndConstructorAnalyser.findMethodsWithParameterNames(TestPojo.class);
 
-    for (Method method : methods)
-    {
-      assertTrue(methodsAndConstructorsMap.containsKey(method));
-    }
-  }
+		assertEquals(methods.length, methodsAndConstructorsMap.size());
 
-  @Test
-  public final void testFindConstructorsWithParameterNames()
-  {
-    Map<Constructor<TestPojo>, String[]> methodsAndConstructorsMap =
-      asmMethodAndConstructorAnalyser.findConstructorsWithParameterNames(TestPojo.class);
+		for (final Method method : methods)
+		{
+			assertTrue(methodsAndConstructorsMap.containsKey(method));
+		}
+	}
 
-    final Constructor<?>[] constructors = TestPojo.class.getDeclaredConstructors();
+	@Test
+	public final void testFindConstructorsWithParameterNames()
+	{
+		final Map<Constructor<TestPojo>, String[]> methodsAndConstructorsMap =
+			asmMethodAndConstructorAnalyser.findConstructorsWithParameterNames(TestPojo.class);
 
-    assertEquals(constructors.length, methodsAndConstructorsMap.size());
+		final Constructor<?>[] constructors = TestPojo.class.getDeclaredConstructors();
 
-    for (Constructor<?> constructor : constructors)
-    {
-      assertTrue(methodsAndConstructorsMap.containsKey(constructor));
-    }
-  }
+		assertEquals(constructors.length, methodsAndConstructorsMap.size());
+
+		for (final Constructor<?> constructor : constructors)
+		{
+			assertTrue(methodsAndConstructorsMap.containsKey(constructor));
+		}
+	}
 }
