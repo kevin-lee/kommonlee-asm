@@ -94,8 +94,8 @@
     <dependency>
       <groupId>org.elixirian</groupId>
       <artifactId>kommonlee-core</artifactId>
-      <version>0.0.32-SNAPSHOT</version>
+      <version>0.0.33-SNAPSHOT</version>
     </dependency>
   </dependencies>
-  <version>0.0.23-SNAPSHOT</version>
+  <version>0.0.24-SNAPSHOT</version>
 </project>
