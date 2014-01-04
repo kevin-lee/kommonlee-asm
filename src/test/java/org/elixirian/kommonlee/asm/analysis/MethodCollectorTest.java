@@ -31,8 +31,8 @@
  */
 package org.elixirian.kommonlee.asm.analysis;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.elixirian.kommonlee.asm.analysis.ConstantsForTesting.*;
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -45,12 +45,12 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.elixirian.kommonlee.asm.analysis.ConstantsForTesting.TestPojo;
 import org.elixirian.kommonlee.asm.util.AsmClasses;
+import org.elixirian.kommonlee.lib3rd.asm3.Type;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.elixirian.kommonlee.lib3rd.asm3.Type;
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -104,7 +104,7 @@ public class MethodCollectorTest
   public final void testMethodCollector()
   {
     final MethodCollector methodCollector = new MethodCollector();
-    assertThat(methodCollector.getExternalTypeCacheMap(), is(nullValue()));
+    assertThat(methodCollector.getExternalTypeCacheMap()).isNull();
   }
 
   @Test
@@ -128,27 +128,26 @@ public class MethodCollectorTest
     final ConcurrentMap<String, Class<?>> classNameToClassMapMock = mock(ConcurrentHashMap.class);
 
     final MethodCollector methodCollector = new MethodCollector(classNameToClassMapMock);
-    assertThat(methodCollector.getExternalTypeCacheMap(), equalTo(classNameToClassMapMock));
+    assertThat(methodCollector.getExternalTypeCacheMap()).isEqualTo(classNameToClassMapMock);
   }
 
   @Test
   public final void testResolveMemberClassClassOfQStringClassOfQArray() throws NoSuchMethodException
   {
-    assertThat(methodCollector.resolveMemberClass(TestPojo.class, "testMethod1", PARAMS1),
-        equalTo(TestPojo.class.getDeclaredMethod("testMethod1", PARAMS1)));
-    assertThat(methodCollector.resolveMemberClass(TestPojo.class, "testMethod2", PARAMS2),
-        equalTo(TestPojo.class.getDeclaredMethod("testMethod2", PARAMS2)));
-    assertThat(methodCollector.resolveMemberClass(TestPojo.class, "testMethod3", PARAMS3),
-        equalTo(TestPojo.class.getDeclaredMethod("testMethod3", PARAMS3)));
-    assertThat(methodCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS0),
-        is(nullValue()));
+    assertThat(methodCollector.resolveMemberClass(TestPojo.class, "testMethod1", PARAMS1)).isEqualTo(
+        TestPojo.class.getDeclaredMethod("testMethod1", PARAMS1));
+    assertThat(methodCollector.resolveMemberClass(TestPojo.class, "testMethod2", PARAMS2)).isEqualTo(
+        TestPojo.class.getDeclaredMethod("testMethod2", PARAMS2));
+    assertThat(methodCollector.resolveMemberClass(TestPojo.class, "testMethod3", PARAMS3)).isEqualTo(
+        TestPojo.class.getDeclaredMethod("testMethod3", PARAMS3));
+    assertThat(methodCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS0)).isNull();
 
     boolean exceptionThrown = false;
     try
     {
       methodCollector.resolveMemberClass(TestPojo.class, "somethingDoesNotExist", PARAMS1);
     }
-    catch (NoSuchMethodException e)
+    catch (final NoSuchMethodException e)
     {
       exceptionThrown = true;
     }
@@ -160,7 +159,7 @@ public class MethodCollectorTest
       /* no matching param types. */
       methodCollector.resolveMemberClass(TestPojo.class, "testMethod1", new Class[] { double.class });
     }
-    catch (NoSuchMethodException e)
+    catch (final NoSuchMethodException e)
     {
       exceptionThrown = true;
     }

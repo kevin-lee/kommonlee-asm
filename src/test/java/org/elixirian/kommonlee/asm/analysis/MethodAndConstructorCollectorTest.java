@@ -31,8 +31,8 @@
  */
 package org.elixirian.kommonlee.asm.analysis;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.elixirian.kommonlee.asm.analysis.ConstantsForTesting.*;
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -45,12 +45,12 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.elixirian.kommonlee.asm.analysis.ConstantsForTesting.TestPojo;
 import org.elixirian.kommonlee.asm.util.AsmClasses;
+import org.elixirian.kommonlee.lib3rd.asm3.Type;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.elixirian.kommonlee.lib3rd.asm3.Type;
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -105,7 +105,7 @@ public class MethodAndConstructorCollectorTest
   public final void testMethodAndConstructorCollector()
   {
     final MethodAndConstructorCollector methodAndConstructorCollector = new MethodAndConstructorCollector();
-    assertThat(methodAndConstructorCollector.getExternalTypeCacheMap(), is(nullValue()));
+    assertThat(methodAndConstructorCollector.getExternalTypeCacheMap()).isNull();
   }
 
   @SuppressWarnings("unchecked")
@@ -138,31 +138,31 @@ public class MethodAndConstructorCollectorTest
 
     final MethodAndConstructorCollector methodAndConstructorCollector =
       new MethodAndConstructorCollector(classNameToClassMapMock);
-    assertThat(methodAndConstructorCollector.getExternalTypeCacheMap(), equalTo(classNameToClassMapMock));
+    assertThat(methodAndConstructorCollector.getExternalTypeCacheMap()).isEqualTo(classNameToClassMapMock);
   }
 
   @Test
   public final void testResolveMemberClassClassOfQStringClassOfQArray() throws SecurityException, NoSuchMethodException
   {
 
-    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "testMethod1", PARAMS1),
-        equalTo(((Member) TestPojo.class.getDeclaredMethod("testMethod1", PARAMS1))));
-    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "testMethod2", PARAMS2),
-        equalTo(((Member) TestPojo.class.getDeclaredMethod("testMethod2", PARAMS2))));
-    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "testMethod3", PARAMS3),
-        equalTo(((Member) TestPojo.class.getDeclaredMethod("testMethod3", PARAMS3))));
+    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "testMethod1", PARAMS1)).isEqualTo(
+        (TestPojo.class.getDeclaredMethod("testMethod1", PARAMS1)));
+    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "testMethod2", PARAMS2)).isEqualTo(
+        (TestPojo.class.getDeclaredMethod("testMethod2", PARAMS2)));
+    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "testMethod3", PARAMS3)).isEqualTo(
+        (TestPojo.class.getDeclaredMethod("testMethod3", PARAMS3)));
 
-    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS0),
-        equalTo((Member) TestPojo.class.getDeclaredConstructor(PARAMS0)));
-    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS1),
-        equalTo((Member) TestPojo.class.getDeclaredConstructor(PARAMS1)));
+    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS0)).isEqualTo(
+        TestPojo.class.getDeclaredConstructor(PARAMS0));
+    assertThat(methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS1)).isEqualTo(
+        TestPojo.class.getDeclaredConstructor(PARAMS1));
 
     boolean exceptionThrown = false;
     try
     {
       methodAndConstructorCollector.resolveMemberClass(TestPojo.class, AsmClasses.CONSTRUCTOR_NAME, PARAMS2);
     }
-    catch (NoSuchMethodException e)
+    catch (final NoSuchMethodException e)
     {
       exceptionThrown = true;
     }
@@ -173,7 +173,7 @@ public class MethodAndConstructorCollectorTest
     {
       methodAndConstructorCollector.resolveMemberClass(TestPojo.class, "somethingDoesNotExist", PARAMS0);
     }
-    catch (NoSuchMethodException e)
+    catch (final NoSuchMethodException e)
     {
       exceptionThrown = true;
     }
