@@ -35,6 +35,7 @@ import java.lang.reflect.Member;
 import java.util.Map;
 
 import org.elixirian.kommonlee.asm.analysis.MemberCollector;
+import org.elixirian.kommonlee.lib3rd.asm5.ClassVisitor;
 import org.elixirian.kommonlee.lib3rd.asm5.MethodVisitor;
 import org.elixirian.kommonlee.lib3rd.asm5.Opcodes;
 
@@ -58,7 +59,7 @@ import org.elixirian.kommonlee.lib3rd.asm5.Opcodes;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-06-15)
  */
-public class MethodAnalysisClassVisitor<T, M extends Member> extends EmptyClassVisitor {
+public class MethodAnalysisClassVisitor<T, M extends Member> extends ClassVisitor {
   private final MemberCollector<M> memberCollector;
   private final Class<T> theClass;
   private final Map<M, String[]> memberToParameterNamesMap;

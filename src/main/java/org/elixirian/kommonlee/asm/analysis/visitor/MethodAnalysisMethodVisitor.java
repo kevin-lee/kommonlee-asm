@@ -38,6 +38,7 @@ import java.util.Map;
 
 import org.elixirian.kommonlee.asm.analysis.MemberCollector;
 import org.elixirian.kommonlee.lib3rd.asm5.Label;
+import org.elixirian.kommonlee.lib3rd.asm5.MethodVisitor;
 import org.elixirian.kommonlee.lib3rd.asm5.Opcodes;
 import org.elixirian.kommonlee.lib3rd.asm5.Type;
 
@@ -63,7 +64,7 @@ import org.elixirian.kommonlee.lib3rd.asm5.Type;
  * @param <T>
  * @param <M>
  */
-public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyMethodVisitor {
+public class MethodAnalysisMethodVisitor<T, M extends Member> extends MethodVisitor {
   private final MemberCollector<M> memberCollector;
   private final Class<T> theClass;
   private final Map<M, String[]> memberToParameterNamesMap;
