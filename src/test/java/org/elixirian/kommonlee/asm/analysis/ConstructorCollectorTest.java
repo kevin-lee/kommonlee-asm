@@ -45,7 +45,7 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.elixirian.kommonlee.asm.analysis.ConstantsForTesting.TestPojo;
 import org.elixirian.kommonlee.asm.util.AsmClasses;
-import org.elixirian.kommonlee.lib3rd.asm3.Type;
+import org.elixirian.kommonlee.lib3rd.asm5.Type;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

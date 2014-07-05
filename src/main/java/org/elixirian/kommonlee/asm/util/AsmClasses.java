@@ -44,7 +44,7 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.elixirian.kommonlee.asm.exception.RuntimeClassNotFoundException;
 import org.elixirian.kommonlee.exception.ExtraExceptionInformation;
-import org.elixirian.kommonlee.lib3rd.asm3.Type;
+import org.elixirian.kommonlee.lib3rd.asm5.Type;
 import org.elixirian.kommonlee.util.CommonConstants;
 
 /**
