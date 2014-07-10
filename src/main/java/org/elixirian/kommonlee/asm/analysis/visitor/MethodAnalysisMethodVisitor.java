@@ -37,9 +37,10 @@ import java.lang.reflect.Member;
 import java.util.Map;
 
 import org.elixirian.kommonlee.asm.analysis.MemberCollector;
-import org.elixirian.kommonlee.lib3rd.asm3.Label;
-import org.elixirian.kommonlee.lib3rd.asm3.Opcodes;
-import org.elixirian.kommonlee.lib3rd.asm3.Type;
+import org.elixirian.kommonlee.lib3rd.asm5.Label;
+import org.elixirian.kommonlee.lib3rd.asm5.MethodVisitor;
+import org.elixirian.kommonlee.lib3rd.asm5.Opcodes;
+import org.elixirian.kommonlee.lib3rd.asm5.Type;
 
 /**
  * <pre>
@@ -63,8 +64,7 @@ import org.elixirian.kommonlee.lib3rd.asm3.Type;
  * @param <T>
  * @param <M>
  */
-public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisitor
-{
+public class MethodAnalysisMethodVisitor<T, M extends Member> extends MethodVisitor {
   private final MemberCollector<M> memberCollector;
   private final Class<T> theClass;
   private final Map<M, String[]> memberToParameterNamesMap;
@@ -77,16 +77,9 @@ public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisit
 
   // private boolean hasLocalVaribleSlots;
 
-  /**
-   * @param theClass
-   * @param memberToParameterNamesMap
-   * @param access
-   * @param methodName
-   * @param desc
-   */
-  public MethodAnalysisMethodVisitor(final MemberCollector<M> memberCollector, final Class<T> theClass,
-      final Map<M, String[]> memberToParameterNamesMap, final int access, final String methodName, final String desc)
-  {
+  public MethodAnalysisMethodVisitor(final int api, final MemberCollector<M> memberCollector, final Class<T> theClass,
+      final Map<M, String[]> memberToParameterNamesMap, final int access, final String methodName, final String desc) {
+    super(api);
     this.memberCollector = memberCollector;
     this.theClass = theClass;
     this.memberToParameterNamesMap = memberToParameterNamesMap;
@@ -98,19 +91,16 @@ public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisit
     this.localVariableSlotIndices = calculateLocalVariableSlotIndices(this.staticMethod, this.params);
 
     // this.hasLocalVaribleSlots = false;
-
   }
+
 
   @Override
   public void visitLocalVariable(final String name, @SuppressWarnings("unused") final String desc,
       @SuppressWarnings("unused") final String signature, @SuppressWarnings("unused") final Label start,
-      @SuppressWarnings("unused") final Label end, final int index)
-  {
+      @SuppressWarnings("unused") final Label end, final int index) {
     // hasLocalVaribleSlots = true;
-    for (int i = 0, size = localVariableSlotIndices.length; i < size; i++)
-    {
-      if (index == localVariableSlotIndices[i])
-      {
+    for (int i = 0, size = localVariableSlotIndices.length; i < size; i++) {
+      if (index == localVariableSlotIndices[i]) {
         paramNames[i] = name;
         // TODO test it!
         break;
@@ -119,16 +109,13 @@ public class MethodAnalysisMethodVisitor<T, M extends Member> extends EmptyVisit
   }
 
   @Override
-  public void visitEnd()
-  {
-    if (shouldCollectMethodInfo())
-    {
+  public void visitEnd() {
+    if (shouldCollectMethodInfo()) {
       memberCollector.collect(theClass, methodName, memberToParameterNamesMap, params, paramNames);
     }
   }
 
-  private boolean shouldCollectMethodInfo()
-  {
+  private boolean shouldCollectMethodInfo() {
     /*
      * If the method is a static method with no parameters and has no local variables in it which means it has no local
      * variable slots, the visitLocalVariable() method might not be called so this case should be checked and if it is

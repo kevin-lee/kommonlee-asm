@@ -35,8 +35,9 @@ import java.lang.reflect.Member;
 import java.util.Map;
 
 import org.elixirian.kommonlee.asm.analysis.MemberCollector;
-import org.elixirian.kommonlee.lib3rd.asm3.MethodVisitor;
-import org.elixirian.kommonlee.lib3rd.asm3.Opcodes;
+import org.elixirian.kommonlee.lib3rd.asm5.ClassVisitor;
+import org.elixirian.kommonlee.lib3rd.asm5.MethodVisitor;
+import org.elixirian.kommonlee.lib3rd.asm5.Opcodes;
 
 /**
  * <pre>
@@ -58,19 +59,14 @@ import org.elixirian.kommonlee.lib3rd.asm3.Opcodes;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-06-15)
  */
-public class MethodAnalysisClassVisitor<T, M extends Member> extends EmptyVisitor
-{
+public class MethodAnalysisClassVisitor<T, M extends Member> extends ClassVisitor {
   private final MemberCollector<M> memberCollector;
   private final Class<T> theClass;
   private final Map<M, String[]> memberToParameterNamesMap;
 
-  /**
-   * @param theClass
-   * @param memberToParameterNamesMap
-   */
-  public MethodAnalysisClassVisitor(final MemberCollector<M> memberCollector, final Class<T> theClass,
-      final Map<M, String[]> memberToParameterNamesMap)
-  {
+  public MethodAnalysisClassVisitor(final int api, final MemberCollector<M> memberCollector, final Class<T> theClass,
+      final Map<M, String[]> memberToParameterNamesMap) {
+    super(api);
     this.memberCollector = memberCollector;
     this.theClass = theClass;
     this.memberToParameterNamesMap = memberToParameterNamesMap;
@@ -78,12 +74,9 @@ public class MethodAnalysisClassVisitor<T, M extends Member> extends EmptyVisito
 
   @Override
   public MethodVisitor visitMethod(final int access, final String name, final String desc,
-      @SuppressWarnings("unused") final String signature, @SuppressWarnings("unused") final String[] exceptions)
-  {
-    if (0 == ((access & Opcodes.ACC_SYNTHETIC) | (access & Opcodes.ACC_BRIDGE)))
-    {
-      return new MethodAnalysisMethodVisitor<T, M>(memberCollector, theClass, memberToParameterNamesMap, access, name,
-          desc);
+      @SuppressWarnings("unused") final String signature, @SuppressWarnings("unused") final String[] exceptions) {
+    if (0 == ((access & Opcodes.ACC_SYNTHETIC) | (access & Opcodes.ACC_BRIDGE))) {
+      return new MethodAnalysisMethodVisitor<T, M>(Opcodes.ASM5, memberCollector, theClass, memberToParameterNamesMap, access, name, desc);
     }
     return null;
   }

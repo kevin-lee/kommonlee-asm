@@ -42,26 +42,22 @@ import org.elixirian.kommonlee.util.CommonConstants;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-06-23)
  */
-public final class ConstantsForTesting
-{
+public final class ConstantsForTesting {
   @Target({ ElementType.METHOD })
   @Retention(RetentionPolicy.RUNTIME)
-  static @interface MethodAnnotation
-  {
+  static @interface MethodAnnotation {
     String value() default "";
   }
 
   @Target({ ElementType.METHOD })
   @Retention(RetentionPolicy.RUNTIME)
-  static @interface AnotherMethodAnnotation
-  {
+  static @interface AnotherMethodAnnotation {
     String value() default "";
   }
 
   @Target({ ElementType.PARAMETER })
   @Retention(RetentionPolicy.RUNTIME)
-  static @interface ParamAnnotation
-  {
+  static @interface ParamAnnotation {
     String value() default "";
 
     int number() default 0;
@@ -69,53 +65,45 @@ public final class ConstantsForTesting
 
   @Target({ ElementType.PARAMETER })
   @Retention(RetentionPolicy.RUNTIME)
-  static @interface AnotherParamAnnotation
-  {
+  static @interface AnotherParamAnnotation {
     String value() default "default";
 
     String[] arrayValue() default { "defaultArray" };
   }
 
-  static class TestPojo
-  {
-    public TestPojo()
-    {
+  static class TestPojo {
+    public TestPojo() {
+    }
+
+    public TestPojo(@SuppressWarnings("unused") @ParamAnnotation(value = "someName", number = 2) @AnotherParamAnnotation() final String name) {
     }
 
     public TestPojo(
-        @SuppressWarnings("unused") @ParamAnnotation(value = "someName", number = 2) @AnotherParamAnnotation() String name)
-    {
+        @SuppressWarnings("unused") @ParamAnnotation(value = "someName", number = 2) @AnotherParamAnnotation() final String name,
+        @SuppressWarnings("unused") @ParamAnnotation final int number) {
     }
 
-    public TestPojo(
-        @SuppressWarnings("unused") @ParamAnnotation(value = "someName", number = 2) @AnotherParamAnnotation() String name,
-        @SuppressWarnings("unused") @ParamAnnotation int number)
-    {
-    }
-
-    public TestPojo(@SuppressWarnings("unused") TestPojo another)
-    {
+    public TestPojo(@SuppressWarnings("unused") final TestPojo another) {
     }
 
     @AnotherMethodAnnotation
     @MethodAnnotation("something")
-    public void testMethod1(
-        @SuppressWarnings("unused") @AnotherParamAnnotation(arrayValue = { "A", "B" }, value = "test") String name)
-    {
+    public void testMethod1(@SuppressWarnings("unused") @AnotherParamAnnotation(arrayValue = { "A", "B" }, value = "test") final String name) {
     }
 
-    public String testMethod2(@SuppressWarnings("unused") int number)
-    {
+    public String testMethod2(@SuppressWarnings("unused") final int number) {
       return null;
     }
 
-    public TestPojo testMethod3(@SuppressWarnings("unused") Long id)
-    {
+    public TestPojo testMethod3(@SuppressWarnings("unused") final Long id) {
       return null;
     }
 
-    public void testMethod4(@SuppressWarnings("unused") TestPojo another)
-    {
+    public void testMethod4(@SuppressWarnings("unused") final TestPojo another) {
+    }
+
+    public <T> String testGenericMethod(final T value) {
+      return String.valueOf(value);
     }
   }
 
@@ -144,8 +132,7 @@ public final class ConstantsForTesting
    */
   public static final Class<?>[] PARAMS4 = new Class[] { TestPojo.class };
 
-  private ConstantsForTesting()
-  {
+  private ConstantsForTesting() {
     throw new IllegalStateException(getClass() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 }
